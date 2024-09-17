@@ -5,14 +5,15 @@ Projekt på programmet:
 Front end webbutvecklare 400 YH-poäng - Grit Academy  
 (2023-2025)
 
-### KURS
+### KURS/Uppgift
 JavaScript 3
 Övningsuppgift 1 - Bygg och deploya en SPA
 
-### URL
-https://knastman.github.io/fe23-js1-mp2-petra-hastman/
-
 ---
+Detta är en lite större övningsuppgift som hjälper dig att träna på att:
+* bygga en Single Page Application, SPA, utan ett tredjeparts bibliotek eller ramverk.
+* göra en deployment av din SPA till en hosting provider.
+* repetera grundläggande javascript-koncept
 
 ## Uppgiften
 
