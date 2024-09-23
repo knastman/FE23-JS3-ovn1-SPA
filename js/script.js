@@ -12,7 +12,7 @@ const content = document.getElementById('content');
 
 //"State" blir home och home.html laddas in vid start
 window.addEventListener('load', async () => {
-  history.replaceState({page: 'home'}, "", "/#/home");
+  history.replaceState({page: 'home'}, "", "/home");
   await getPageContent('home.html')
 });
 
@@ -33,7 +33,7 @@ aboutDOM.addEventListener('click', async () => {
 contactDOM.addEventListener('click', async () => {
   history.pushState({page: 'contact'}, '', '/contact');
   await getPageContent('contact.html');
-})
+});
 
 
 /************************************
@@ -61,11 +61,14 @@ async function getPageContent(filename) {
   if(typeof filename != 'string'){
     return; 
   }  
-  
+
+  //Spinner gif when waiting for content
+  const spinnerImg = createSpinnerImg();
+  content.appendChild(spinnerImg);
+
   await fetch(`${filename}`)
-    .then((result) => {
-      console.log(result);
-      return result.text();
+    .then((response) => {
+      return response.text();
     })
     .then((data) => {
       content.innerHTML = data;
@@ -75,18 +78,17 @@ async function getPageContent(filename) {
       console.log(error);    
     })
     .finally(() => {
-      // spinner.remove();
+      spinnerImg.remove();
     })
 }
 
 
-// Alriks exempelkod
-// function fetchHtml() { 
-//   fetch('./contact.html')
-//       .then((response) => {
-//           return response.text()
-//       })
-//       .then((html) => {
-//           document.body.innerHTML = html
-//       })
-// }
+/************************************
+  Skapa spinnerbilden
+***********************************/
+
+function createSpinnerImg() {
+  const img = document.createElement('img')
+  img.src = '../images/spinner.gif';
+  return img;
+}
