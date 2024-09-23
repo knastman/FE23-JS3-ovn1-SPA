@@ -4,23 +4,17 @@ const contactDOM = document.getElementById('contact');
 
 const content = document.getElementById('content');
 
-
-
 /************************************
   Laddar in sidinfo
 ***********************************/
-
 //"State" blir home och home.html laddas in vid start
 window.addEventListener('load', async () => {
   history.replaceState({page: 'home'}, "", "/home");
   await getPageContent('home.html')
 });
 
-
 //Laddar rätt sida (getPageContent - funktion nedan) och sätter rätt URL (pushstate)
 homeDOM.addEventListener('click', async () => {
-  // event.preventDefault(); behövs inte enligt Tim, kan vara bra att läsa på om igen
-  // history.pushState({page: 'home'}, '', '/home');
   history.pushState({page: 'home'}, '', '/home');
   await getPageContent('home.html');
 })
