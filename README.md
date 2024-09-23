@@ -21,10 +21,6 @@ Detta är en lite större övningsuppgift som hjälper dig att träna på att:
 Skapa ett nytt git-repo för denna uppgiften. Använd t.ex. GitHub för att göra det tillgängligt på nätet.
 Det spelar ingen roll vilket namn du väljer att använda. Klona repot till din dator. Under övningen bör
 du regelbundet add, commit och push:a din kod till dit repo på GitHub.
-1. Skapa ett git-repo för övningen
-Skapa ett nytt git-repo för denna uppgiften. Använd t.ex. GitHub för att göra det tillgängligt på nätet.
-Det spelar ingen roll vilket namn du väljer att använda. Klona repot till din dator. Under övningen bör
-du regelbundet add, commit och push:a din kod till dit repo på GitHub.
 
 2. Skapa en enkel Single Page Application
 Syftet är att lära oss att bygga en enklare SPA utan att använda något tredjepartsbibliotek eller
