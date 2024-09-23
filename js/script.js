@@ -47,8 +47,7 @@ window.addEventListener('popstate', async () => {
     return; //Om state är null så avslutas och den fortsätter INTE mer i funktionen
   }
 
-  // const pageName = `${history.state.page}.html`;
-  const pageName = history.state.page;
+  const pageName = `${history.state.page}.html`;
   await getPageContent(pageName);
 })
 
