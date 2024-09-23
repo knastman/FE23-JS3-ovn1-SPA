@@ -1,42 +1,42 @@
-
-
-
 const homeDOM = document.getElementById('home');
 const aboutDOM = document.getElementById('about');
 const contactDOM = document.getElementById('contact');
 
 const content = document.getElementById('content');
 
-//State blir home och home.html laddas in
+//State blir home och home.html laddas in vid start
 window.addEventListener('load', async () => {
-  history.pushState({page: 'home'}, "", "/home");
+  history.replaceState({page: 'home'}, "", "/home");
   // await fetchPage('home.html')
-  await fetchPage('home')
+  await getPageContent('home')
 });
 
+/************************************
+  Laddar in sidinfo
+***********************************/
 
 //Laddar rätt sida (fetchPage) och sätter rätt URL (pushstate)
 homeDOM.addEventListener('click', async () => {
   // event.preventDefault(); behövs inte enligt Tim, kan vara bra att läsa på om igen
+  // history.pushState({page: 'home'}, '', '/home');
   history.pushState({page: 'home'}, '', '/home');
-  await fetchPage('home');
+  await getPageContent('home');
 })
 
 aboutDOM.addEventListener('click', async () => {
-  history.pushState({page: 'about'}, '', '/about');
-  await fetchPage('about');
+  history.pushState({page: 'about'}, '', '//about');
+  await getPageContent('about');
 })
 
 contactDOM.addEventListener('click', async () => {
   history.pushState({page: 'contact'}, '', '/contact');
-  await fetchPage('contact');
+  await getPageContent('contact');
 })
 
 
-//EVENTUELLT:
-//Gör en funktion som gör att home, about etc inte måste skrivas tre gånger i eventlistnerna
-//Gör pushState och fetchPage med en variabel istället för en hårdkodad sträng 
-
+/************************************
+  Piltangenterna i webbläsaren
+***********************************/
 
 //Gör det möjligt att backa och gå framåt med webbläsarpilarna
 //popstate hänger ihop med pushstate - som är en del av history API
@@ -47,20 +47,20 @@ window.addEventListener('popstate', async () => {
 
   // const pageName = `${history.state.page}.html`;
   const pageName = history.state.page;
-  await fetchPage(pageName);
+  await getPageContent(pageName);
 })
 
 
-//Döp ev om så att jag inte glömmer att det inte är en inbyggd funktion
-//Hämtar innehållet i htmlfilerna och visar det
-async function fetchPage(filename) {
-  console.log('fetchpage');
-  
+/************************************
+  Hämta innehåll från htmlfilerna
+***********************************/
+
+async function getPageContent(filename) {
   //Säkrar att "filername" (variabeln) är en sträng
   if(typeof filename != 'string'){
     return; 
   }  
-
+  
   await fetch(`${filename}.html`)
     .then((result) => {
       console.log(result);
@@ -72,6 +72,9 @@ async function fetchPage(filename) {
     .catch(error => {
       content.innerHTML = `Error fetching data`;
       console.log(error);    
+    })
+    .finally(() => {
+      // spinner.remove();
     })
 }
 
